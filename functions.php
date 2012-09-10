@@ -17,6 +17,7 @@ function register_my_menus() {
 }
 
 function create_post_type() {
+/*
 	register_post_type( 'event',
 		array(
 			'labels' => array(
@@ -28,17 +29,21 @@ function create_post_type() {
 		'supports' => array('title','editor','author','thumbnail','excerpt','comments','page-attributes')
 		)
 	);
+*/
+
 }
 
 function create_taxonomies() {
-
-	register_taxonomy('type',array('event'), array(
+/*
+	register_taxonomy('event-type',array('event'), array(
 	    'hierarchical' => true,
 	    //'labels' => $labels,
 	    'show_ui' => true,
 	    'query_var' => true,
-	    'rewrite' => array( 'slug' => 'type' ),
+	    'rewrite' => array( 'slug' => 'event-type' ),
 	  ));
+*/
+
 }
   
 ?>

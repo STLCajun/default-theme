@@ -13,7 +13,7 @@ Copyright (c) 2012 Janis Skarnelis - janis@fancyapps.com
 How to use
 ----------
 
-To get started, download the plugin, unzip it and copy files to your website/application directory. 
+To get started, download the plugin, unzip it and copy files to your website/application directory.
 Load files in the <head> section of your HTML document. Make sure you also add the jQuery library.
 
     <head>
@@ -26,7 +26,7 @@ Create your links with a `title` if you want a title to be shown, and add a clas
 
     <a href="large_image.jpg" class="fancybox" title="Sample title"><img src="small_image.jpg" /></a>
 
-If you have a set of related items that you would like to group, 
+If you have a set of related items that you would like to group,
 additionally include a group name in the `rel` (or `data-fancybox-group`) attribute:
 
     <a href="large_1.jpg" class="fancybox" rel="gallery" title="Sample title 1"><img src="small_1.jpg" /></a>
@@ -45,28 +45,34 @@ May also be passed an optional options object which will extend the default valu
     <script>
         $(document).ready(function() {
             $('.fancybox').fancybox({
-                padding : 5,
-                loop : false
+                padding : 0,
+                openEffect  : 'elastic'
             });
         });
     </script>
 
-Script uses the `href` attribute of the matched elements to obtain the location of the content and to figure out content type you want to display. 
-You can specify type directly by adding classname (fancybox.image, fancybox.iframe, etc).
+Tip: Automatically group and apply fancyBox to all images:
 
-    Ajax:
+    $("a[href$='.jpg'],a[href$='.jpeg'],a[href$='.png'],a[href$='.gif']").attr('rel', 'gallery').fancybox();
+
+Script uses the `href` attribute of the matched elements to obtain the location of the content and to figure out content type you want to display.
+You can specify type directly by adding classname (fancybox.image, fancybox.iframe, etc) or `data-fancybox-type` attribute:
+
+    //Ajax:
     <a href="/example.html" class="fancybox fancybox.ajax">Example</a>
+    //or
+    <a href="/example.html" class="fancybox" data-fancybox-type="ajax">Example</a>
 
-    Iframe:
+    //Iframe:
     <a href="example.html" class="fancybox fancybox.iframe">Example</a>
 
-    Inline:
+    //Inline (will display an element with `id="example"`)
     <a href="#example" class="fancybox">Example</a>
 
-    SWF:
+    //SWF:
     <a href="example.swf" class="fancybox">Example</a>
 
-    Image:
+    //Image:
     <a href="example.jpg" class="fancybox">Example</a>
 
 Note, ajax requests are subject to the [same origin policy](http://en.wikipedia.org/wiki/Same_origin_policy).
@@ -77,16 +83,41 @@ Advanced
 
 ### Helpers
 
-Helpers provide a simple mechanism to extend the capabilities of fancyBox.
-There are two built-in helpers - 'overlay' and 'title'. You can disable them, set custom options or enable other helpers:
+Helpers provide a simple mechanism to extend the capabilities of fancyBox. There are two built-in helpers - 'overlay' and 'title'.
+You can disable them, set custom options or enable other helpers. Examples:
 
+    //Disable title helper
     $(".fancybox").fancybox({
         helpers:  {
-            overlay : null, /* Disables overlay helper */
-            title:  {
-                type : 'inside' /* Changes title location */
+            title:  null
+        }
+    });
+
+    //Disable overlay helper
+    $(".fancybox").fancybox({
+        helpers:  {
+            overlay : null
+        }
+    });
+
+    //Change title position and overlay color
+    $(".fancybox").fancybox({
+        helpers:  {
+            title : {
+                type : 'inside'
             },
-            thumbs : { /* Enables thumbnail helper */
+            overlay : {
+                css : {
+                    'background' : 'rgba(255,255,255,0.5)'
+                }
+            }
+        }
+    });
+
+    //Enable thumbnail helper and set custom options
+    $(".fancybox").fancybox({
+        helpers:  {
+            thumbs : {
                 width: 50,
                 height: 50
             }
@@ -94,7 +125,7 @@ There are two built-in helpers - 'overlay' and 'title'. You can disable them, se
     });
 
 
-### API 
+### API
 
 Also available are event driven callback methods.  The `this` keyword refers to the current or upcoming object (depends on callback method). Here is how you can change title:
 
@@ -111,23 +142,23 @@ Also available are event driven callback methods.  The `this` keyword refers to 
 
 It`s possible to open fancyBox programmatically in various ways:
 
-    HTML content:
+    //HTML content:
     $.fancybox( '<div><h1>Lorem Lipsum</h1><p>Lorem lipsum</p></div>', {
         title : 'Custom Title'
     });
 
-    DOM element:
+    //DOM element:
     $.fancybox( $("#inline"), {
         title : 'Custom Title'
     });
 
-    Custom object:
+    //Custom object:
     $.fancybox({
         href: 'example.jpg',
         title : 'Custom Title'
     });
 
-    Array of objects:
+    //Array of objects:
     $.fancybox([
         {
             href: 'example1.jpg',
@@ -143,8 +174,40 @@ It`s possible to open fancyBox programmatically in various ways:
 
 There are several methods that allow you to interact with and manipulate fancyBox, example:
 
-    Close fancybox:
+    //Close fancybox:
     $.fancybox.close();
+
+There is a simply way to access wrapping elements using JS:
+
+    $.fancybox.wrap
+    $.fancybox.skin
+    $.fancybox.outer
+    $.fancybox.inner
+
+You can override CSS to customize the look. For example, make navigation arrows always visible,
+change width and move them outside of area (use this snippet after including fancybox.css):
+
+    .fancybox-nav span {
+        visibility: visible;
+    }
+
+    .fancybox-nav {
+        width: 80px;
+    }
+
+    .fancybox-prev {
+        left: -80px;
+    }
+
+    .fancybox-next {
+        right: -80px;
+    }
+
+In that case, you might want to increase space around box:
+
+    $(".fancybox").fancybox({
+        margin : [20, 60, 20, 60]
+    });
 
 
 Bug tracker

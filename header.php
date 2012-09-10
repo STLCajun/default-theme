@@ -5,7 +5,7 @@
 			
 			<link href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" rel="stylesheet" />
 			
-			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 			<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/html5.js"></script>
 			
 			<!-- FancyBox - http://www.fancyapps.com/fancybox/#instructions -->
@@ -28,7 +28,11 @@
 				<script type="text/javascript">
 					// Be sure to un-comment lines in the CSS file.
 					$(window).load(function() {
-				    	$('#slider').nivoSlider();
+				    	$('#slider').nivoSlider({
+				    								effect:'fade',
+				    							    directionNav: false,
+											        controlNav: false
+											   });
 						});
 				</script>				
 			
