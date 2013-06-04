@@ -8,15 +8,41 @@
 			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 			<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/html5.js"></script>
 			
+			<script>
+				$(window).load(function() {
+					$("ul li:last-child").addClass("last");
+					
+				});
+			
+			</script>
+			
 			<!-- FancyBox - http://www.fancyapps.com/fancybox/#instructions -->
 			<!-- 
 				<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/fancybox/source/jquery.fancybox.pack.js"></script>
+				<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/fancybox/source/helpers/jquery.fancybox-media.js"></script>
 				<link href="<?php bloginfo('template_directory'); ?>/js/fancybox/source/jquery.fancybox.css" type="text/css" rel="stylesheet" />
 				
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$(".fancybox").fancybox();
 						});
+						
+						$('.fancybox-media').fancybox({
+								openEffect  : 'none',
+								closeEffect : 'none',
+								helpers : {
+									media : {}
+								}
+							});
+
+						$('a[href^="https://vimeo.com"],a[href^="https://www.vimeo.com"]').fancybox({
+								openEffect  : 'none',
+								closeEffect : 'none',
+								helpers : {
+									media : {}
+								}
+							});
+						
 				</script>
 			-->
 			
